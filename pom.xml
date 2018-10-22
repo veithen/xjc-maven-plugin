@@ -117,6 +117,9 @@
                 <configuration>
                     <projectName>xjc-maven-plugin</projectName>
                     <licenseName>apache_v2</licenseName>
+                    <extraExtensions>
+                        <wsdl>xml</wsdl>
+                    </extraExtensions>
                 </configuration>
             </plugin>
         </plugins>

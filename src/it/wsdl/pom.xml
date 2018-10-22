@@ -26,6 +26,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -40,7 +47,7 @@
                         <configuration>
                             <schemaLanguage>WSDL</schemaLanguage>
                             <files>
-                                <file>src/test/wsdl/ProxyDocLitWrapped.wsdl</file>
+                                <file>src/test/wsdl/test.wsdl</file>
                             </files>
                         </configuration>
                     </execution>
