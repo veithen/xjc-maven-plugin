@@ -88,6 +88,9 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
             }
         };
         Model model = ModelLoader.load(options, new JCodeModel(), errorReceiver);
+        if (model == null) {
+            throw new MojoExecutionException("Code generation failed");
+        }
         Outline outline = model.generateCode(options, errorReceiver);
         if (outline == null) {
             throw new MojoExecutionException("Code generation failed");
