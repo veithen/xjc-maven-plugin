@@ -49,6 +49,7 @@
                             <files>
                                 <file>src/test/wsdl/test.wsdl</file>
                             </files>
+                            <packageName>test</packageName>
                         </configuration>
                     </execution>
                 </executions>

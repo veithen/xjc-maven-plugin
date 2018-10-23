@@ -50,6 +50,12 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
     @Parameter(required=true)
     private File[] files;
 
+    /**
+     * Corresponds to the {@code -p} option.
+     */
+    @Parameter
+    private String packageName;
+
     @Parameter(required=true, defaultValue="${project.build.sourceEncoding}")
     private String outputEncoding;
 
@@ -59,6 +65,7 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
         File outputDirectory = getOutputDirectory();
         Options options = new Options();
         options.setSchemaLanguage(schemaLanguage);
+        options.defaultPackage = packageName;
         for (File file : files) {
             options.addGrammar(file);
         }

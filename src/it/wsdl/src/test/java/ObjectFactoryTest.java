@@ -17,8 +17,8 @@
  * limitations under the License.
  * #L%
  */
-import org.example.ObjectFactory;
 import org.junit.Test;
+import test.ObjectFactory;
 
 public class ObjectFactoryTest {
     @Test
