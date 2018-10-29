@@ -5,8 +5,17 @@ jdk:
   - openjdk9
   - openjdk10
   - openjdk11
+before_install:
+  - if [ -e $JAVA_HOME/lib/security/cacerts ]; then ln -sf /etc/ssl/certs/java/cacerts $JAVA_HOME/lib/security/cacerts; fi
 install: true
-script: mvn -B -U verify
+script: mvn -B -U -Prelease -Dgpg.skip=true verify
+jobs:
+  include:
+    - if: repo = "veithen/xjc-maven-plugin" AND branch = master AND type = push
+      stage: deploy
+      script: mvn -B -s .travis-settings.xml -Prelease -Dgpg.skip=true -DskipTests=true deploy
+      env:
+      - secure: "WT3B1sWPkFOJldNAuyGjr1lqF5H6Y3WsOvtWy2rlxMslBKMDAtxZXH1r8X+bylK+25zqYNYZE5a6lPgAefLcFCpKm0K5aZkP4XW2gpnBoyi8A0bRXK7TJcXG7gF0fHL1CShYx5y1IK5fOFIPUCVH1sGUmbbOXj7IHixZK4vq5HBA2ub+DAQLqRxvKmKS99SoUNaVOIlSJw0/GV7tx1/RSO5ehXpw2UxnUyp000oOrVathIieF4xrhwbAzHOrKVfL8Cwxodnf9Ot8TVlbCjD6J9TVI+DCxkKoRZYUJ1EqDCG9DDBJmwSV9JCezpKYTCUd9D4ccAbxmU85G4GnMjANHY8ICfN9k11q8QumpSf6kO/JeQKNIw80HOcu2ZNjvMldB92YM1aC47NnmAg4te22F/U5W477wfkxWEzafFAyOXajNWwrr7zaRhmDKPwrkiCdPQTp3LzIpJ8z5/OZjNrtgsUTBseMzAq3rOljXsm3QOTVXkE5rZwdIwR0PxS3JaYG33AJh5APIkB7BRyJPa8IiERGWqaBjTjX62gL2wQ6iM+nVnGn4Hpe3fyC9JbetCKRnl3JBE4l4Sxx5EN6s1+bjYpgAUWLiZUkhDOPB0hRZ2v71JKEABeOSpshffZeXCS80p+9YpxUdHWIjN+RIdY8oKfcJmbFLftu506DrIc9XGw="
 cache:
   directories:
     - $HOME/.m2
