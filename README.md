@@ -7,3 +7,5 @@ This is a simple (i.e. not feature complete) alternative to [jaxb2-maven-plugin]
 *   It must works out of the box with recent Java versions (Neither [jaxb2-maven-plugin](https://www.mail-archive.com/mojohaus-dev@googlegroups.com/msg00443.html) nor cxf-xjc-plugin do).
 
 *   It shouldn't fork a new VM to invoke xjc.
+
+Note that this plugin is affected by [MNG-6506](https://issues.apache.org/jira/browse/MNG-6506).
