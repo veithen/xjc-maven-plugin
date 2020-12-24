@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,22 +41,18 @@ import com.sun.tools.xjc.model.Model;
 import com.sun.tools.xjc.outline.Outline;
 
 public abstract class AbstractGenerateMojo extends AbstractMojo {
-    @Parameter(property="project", readonly=true, required=true)
+    @Parameter(property = "project", readonly = true, required = true)
     private MavenProject project;
 
-    @Parameter
-    private Language schemaLanguage = Language.XMLSCHEMA;
+    @Parameter private Language schemaLanguage = Language.XMLSCHEMA;
 
-    @Parameter(required=true)
+    @Parameter(required = true)
     private File[] files;
 
-    /**
-     * Corresponds to the {@code -p} option.
-     */
-    @Parameter
-    private String packageName;
+    /** Corresponds to the {@code -p} option. */
+    @Parameter private String packageName;
 
-    @Parameter(required=true, defaultValue="${project.build.sourceEncoding}")
+    @Parameter(required = true, defaultValue = "${project.build.sourceEncoding}")
     private String outputEncoding;
 
     @Override
@@ -69,31 +65,32 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
         for (File file : files) {
             options.addGrammar(file);
         }
-        ErrorReceiver errorReceiver = new ErrorReceiver() {
-            @Override
-            public void fatalError(SAXParseException exception) {
-                log.error(exception.getMessage());
-                log.debug(exception);
-            }
-            
-            @Override
-            public void error(SAXParseException exception) {
-                log.error(exception.getMessage());
-                log.debug(exception);
-            }
-            
-            @Override
-            public void warning(SAXParseException exception) {
-                log.warn(exception.getMessage());
-                log.debug(exception);
-            }
-            
-            @Override
-            public void info(SAXParseException exception) {
-                log.info(exception.getMessage());
-                log.debug(exception);
-            }
-        };
+        ErrorReceiver errorReceiver =
+                new ErrorReceiver() {
+                    @Override
+                    public void fatalError(SAXParseException exception) {
+                        log.error(exception.getMessage());
+                        log.debug(exception);
+                    }
+
+                    @Override
+                    public void error(SAXParseException exception) {
+                        log.error(exception.getMessage());
+                        log.debug(exception);
+                    }
+
+                    @Override
+                    public void warning(SAXParseException exception) {
+                        log.warn(exception.getMessage());
+                        log.debug(exception);
+                    }
+
+                    @Override
+                    public void info(SAXParseException exception) {
+                        log.info(exception.getMessage());
+                        log.debug(exception);
+                    }
+                };
         Model model = ModelLoader.load(options, new JCodeModel(), errorReceiver);
         if (model == null) {
             throw new MojoExecutionException("Code generation failed");
@@ -113,5 +110,6 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
     }
 
     protected abstract File getOutputDirectory();
+
     protected abstract void addSourceRoot(MavenProject project, String path);
 }
