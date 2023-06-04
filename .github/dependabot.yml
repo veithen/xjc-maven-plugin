@@ -4,16 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: "org.glassfish.jaxb:jaxb-xjc"
-        versions: ">= 3.0"
   - package-ecosystem: "maven"
     directory: "/src/it/wsdl"
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: "javax.xml.bind:jaxb-api"
-        versions: ">= 3.0"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
