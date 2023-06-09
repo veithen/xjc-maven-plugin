@@ -29,7 +29,7 @@
 
     <groupId>com.github.veithen.maven</groupId>
     <artifactId>xjc-maven-plugin</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <url>http://veithen.github.io/xjc-maven-plugin/</url>
@@ -46,13 +46,13 @@
         <url>https://github.com/veithen/xjc-maven-plugin/tree/master</url>
         <connection>scm:git:http://github.com/veithen/xjc-maven-plugin.git</connection>
         <developerConnection>scm:git:https://github.com/veithen/xjc-maven-plugin.git</developerConnection>
-        <tag>0.2.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
         <github.repository>xjc-maven-plugin</github.repository>
         <javaVersion>11</javaVersion>
-        <project.build.outputTimestamp>2023-06-09T14:35:28Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2023-06-09T14:35:45Z</project.build.outputTimestamp>
         <maven.version>3.9.2</maven.version>
     </properties>
 
